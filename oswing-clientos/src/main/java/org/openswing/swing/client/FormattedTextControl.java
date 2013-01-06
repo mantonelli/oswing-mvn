@@ -4,6 +4,7 @@ import java.text.*;
 
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
 import javax.swing.text.*;
 import org.openswing.swing.util.client.ClientSettings;
@@ -63,6 +64,7 @@ public class FormattedTextControl extends BaseInputControl implements InputContr
     try {
       textBox.setColumns(columns);
       textBox.setDisabledTextColor(UIManager.getColor("TextField.foreground"));
+      
       this.setLayout(new GridBagLayout());
       this.add(textBox,
                new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0,
@@ -98,6 +100,16 @@ public class FormattedTextControl extends BaseInputControl implements InputContr
               setText(textBox.getText());
           }
         }
+        
+		public void focusGained(FocusEvent e) {
+        	if(ClientSettings.SELECT_TEXT_ON_FOCUS) {
+        		SwingUtilities.invokeLater( new Runnable() {
+        			public void run() {
+        				textBox.selectAll();
+        			}
+        		});
+        	}
+	  	}
 
       });
   }

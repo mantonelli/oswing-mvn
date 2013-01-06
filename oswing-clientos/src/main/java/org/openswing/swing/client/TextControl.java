@@ -2,6 +2,7 @@ package org.openswing.swing.client;
 
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
 
 import org.openswing.swing.util.client.*;
@@ -43,7 +44,7 @@ public class TextControl extends BaseInputControl implements InputControl {
   /** flag used to translate the text on uppercase */
   private boolean upperCase = false;
 
-  /** flag used to trim the text */
+/** flag used to trim the text */
   private boolean trimText = false;
 
   /** flag used to right padding the text (related to maxCharacters property) */
@@ -250,6 +251,16 @@ public class TextControl extends BaseInputControl implements InputControl {
           setText(textBox.getText());
         }
       }
+      
+      public void focusGained(FocusEvent e) {
+    	  if(ClientSettings.SELECT_TEXT_ON_FOCUS) {
+    		  SwingUtilities.invokeLater( new Runnable() {
+    			  public void run() {
+    				  textBox.selectAll();
+    			  }
+    		  });
+    	  }
+	  }
 
     });
   }

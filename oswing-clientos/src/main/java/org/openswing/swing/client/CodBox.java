@@ -5,6 +5,7 @@ import java.math.*;
 
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
 
 import org.openswing.swing.lookup.client.*;
@@ -104,9 +105,19 @@ public class CodBox extends JTextField {
           // start validation on lost focus...
           startValidation();
       }
-      public void focusGained(FocusEvent e) {
+      //public void focusGained(FocusEvent e) {
 //        oldValue = getText();
-      }
+      //}
+      
+		public void focusGained(FocusEvent e) {
+      	if(ClientSettings.SELECT_TEXT_ON_FOCUS) {
+      		SwingUtilities.invokeLater( new Runnable() {
+      			public void run() {
+      				selectAll();
+      			}
+      		});
+      	}
+	  	}
     });
 
 

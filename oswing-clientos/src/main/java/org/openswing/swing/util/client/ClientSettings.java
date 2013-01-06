@@ -613,7 +613,9 @@ public class ClientSettings {
 
   /** <code>true</code> to show ApplicationEventQueue exceptions; default value: <code>false</code> */
   public static boolean SHOW_EVENT_QUEUE_EXCEPTIONS = false;
-
+  
+  /** <code>true</code> to select text on control focus; default value: <code>false</code> */
+  public static boolean SELECT_TEXT_ON_FOCUS = false;
 
   /**
    * Contains application settings.

@@ -5,6 +5,7 @@ import java.text.*;
 
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
 
 import org.openswing.swing.logger.client.*;
@@ -442,6 +443,16 @@ public class NumericControl extends BaseInputControl implements InputControl {
         }
 
       }
+      
+		public void focusGained(FocusEvent e) {
+      	if(ClientSettings.SELECT_TEXT_ON_FOCUS) {
+      		SwingUtilities.invokeLater( new Runnable() {
+      			public void run() {
+      				numBox.selectAll();
+      			}
+      		});
+      	}
+	  	}
 
     });
   }
