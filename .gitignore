@@ -1,9 +1,11 @@
-/target
-/bin
-/build
+target/
+test/
+bin/
+build/
 *~
 *.log
 *.tmp
+*.jar
 .project
 .settings
 .classpath
