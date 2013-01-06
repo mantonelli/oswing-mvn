@@ -14,6 +14,8 @@ import org.openswing.swing.util.client.*;
 import org.openswing.swing.client.OptionPane;
 import java.beans.Beans;
 import java.beans.PropertyVetoException;
+
+import javax.swing.border.EmptyBorder;
 import javax.swing.event.MenuListener;
 import javax.swing.event.MenuEvent;
 
@@ -80,7 +82,7 @@ public class MDIFrame extends JFrame implements BusyListener {
   private JMenu menuHelp = new JMenu();
   private JMenuItem menuHelpAbout = new JMenuItem();
   private static StatusBar statusBar = new StatusBar();
-  private BorderLayout borderLayout1 = new BorderLayout();
+  private BorderLayout borderLayout1 = new BorderLayout(0,3);
   private static DesktopPane desktopPane = new DesktopPane();
   private JScrollPane scrollPane = new JScrollPane(desktopPane);
   private static TreeMenu treeMenu = null;
@@ -206,6 +208,12 @@ public class MDIFrame extends JFrame implements BusyListener {
     setIconImage(ClientUtils.getImage(ClientSettings.ICON_FILENAME));
     contentPane = (JPanel) this.getContentPane();
     contentPane.setLayout(borderLayout1);
+    
+    /**
+     * @author Matheus Antonelli
+     */
+    contentPane.setBorder(new EmptyBorder(3, 3, 3, 3));
+    
     statusBar.setText(" ");
     menuFile.setText(ClientSettings.getInstance().getResources().getResource("file"));
     menuFile.setMnemonic(ClientSettings.getInstance().getResources().getResource("filemnemonic").charAt(0));
