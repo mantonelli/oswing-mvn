@@ -373,6 +373,13 @@ public class MDIFrame extends JFrame implements BusyListener {
       treeMenu.setMinimumSize(new Dimension(ClientSettings.MIN_MENU_WIDTH,0));
       treeMenu.setMaximumSize(new Dimension(ClientSettings.MAX_MENU_WIDTH,0));
       treeMenu.addMouseListener(new MenuMouseListener());
+      
+      /**
+       * @author Matheus Antonelli
+       * Aesthetics change. Remove border to look better.
+       */
+      treeMenu.setBorder(null);
+      
       lastTreeMenuWidth = treeMenu.getWidth();
       splitPane.setLeftComponent(treeMenu);
 
