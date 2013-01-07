@@ -375,7 +375,7 @@ public class MDIFrame extends JFrame implements BusyListener {
     this.setExtendedState(this.getExtendedState() | client.getExtendedState());
     desktopPane.setPreferredSize(new Dimension(this.getWidth()-ClientSettings.DIVIDER_WIDTH-6-ClientSettings.MENU_WIDTH,this.getHeight()-menuBar.getHeight()-statusBar.getHeight()-103));
 
-    if (client.viewFunctionsInTreePanel() && ((TreeNode)functions.getRoot()).getChildCount()>0) {
+    if (client.viewFunctionsInTreePanel() && functions != null && ((TreeNode)functions.getRoot()).getChildCount()>0) {
       // add tree nodes...
       treeMenu = new TreeMenu(functions);
       treeMenu.setMinimumSize(new Dimension(ClientSettings.MIN_MENU_WIDTH,0));
