@@ -1,25 +1,84 @@
 package org.openswing.swing.form.client;
 
-import java.beans.*;
-import java.util.*;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.beans.Beans;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.event.*;
-
-import org.openswing.swing.client.*;
-import org.openswing.swing.form.model.client.*;
-import org.openswing.swing.logger.client.*;
-import org.openswing.swing.message.receive.java.*;
-import org.openswing.swing.message.send.java.*;
-import org.openswing.swing.util.client.*;
-import org.openswing.swing.util.java.*;
+import javax.swing.BorderFactory;
+import javax.swing.JFormattedTextField;
+import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
+import javax.swing.SwingUtilities;
+import javax.swing.border.Border;
+import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
+
+import org.jdesktop.swingx.JXErrorPane;
+import org.jdesktop.swingx.error.ErrorInfo;
+import org.jdesktop.swingx.error.ErrorLevel;
+import org.openswing.swing.client.AttributeNameEditor;
+import org.openswing.swing.client.BaseInputControl;
+import org.openswing.swing.client.CodLookupControl;
+import org.openswing.swing.client.ComboBoxControl;
+import org.openswing.swing.client.CopyButton;
+import org.openswing.swing.client.DataController;
+import org.openswing.swing.client.DeleteButton;
+import org.openswing.swing.client.EditButton;
+import org.openswing.swing.client.FormattedTextControl;
+import org.openswing.swing.client.GenericButton;
+import org.openswing.swing.client.GenericButtonController;
+import org.openswing.swing.client.GridControl;
+import org.openswing.swing.client.InputControl;
+import org.openswing.swing.client.InsertButton;
+import org.openswing.swing.client.LinkButton;
+import org.openswing.swing.client.NavigatorBar;
+import org.openswing.swing.client.OptionPane;
+import org.openswing.swing.client.ProgressBarControl;
+import org.openswing.swing.client.ReloadButton;
+import org.openswing.swing.client.SaveButton;
+import org.openswing.swing.client.SpinnerListControl;
+import org.openswing.swing.client.SpinnerNumberControl;
+import org.openswing.swing.form.model.client.VOModel;
+import org.openswing.swing.form.model.client.ValueChangeEvent;
+import org.openswing.swing.form.model.client.ValueChangeListener;
+import org.openswing.swing.logger.client.Logger;
+import org.openswing.swing.message.receive.java.Response;
+import org.openswing.swing.message.receive.java.VOListResponse;
+import org.openswing.swing.message.receive.java.VOResponse;
+import org.openswing.swing.message.receive.java.ValueObject;
+import org.openswing.swing.message.send.java.FilterWhereClause;
+import org.openswing.swing.message.send.java.GridParams;
 import org.openswing.swing.table.client.Grid;
 import org.openswing.swing.table.renderers.client.ExpandablePanel;
-import java.text.*;
+import org.openswing.swing.util.client.ApplicationEventQueue;
+import org.openswing.swing.util.client.ClientSettings;
+import org.openswing.swing.util.client.ClientUtils;
+import org.openswing.swing.util.java.Consts;
 
 
 /**
@@ -891,14 +950,18 @@ public class Form extends JPanel implements DataController,ValueChangeListener,G
 
       this.formController.afterInsertData(this);
 
-      if (insertButton!=null)
-        insertButton.setEnabled(false);
-      if (copyButton!=null)
-        copyButton.setEnabled(false);
-      if (deleteButton!=null)
-        deleteButton.setEnabled(false);
-      if (editButton!=null)
-        editButton.setEnabled(false);
+      SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+		      if (insertButton!=null)
+		        insertButton.setEnabled(false);
+		      if (copyButton!=null)
+		        copyButton.setEnabled(false);
+		      if (deleteButton!=null)
+		        deleteButton.setEnabled(false);
+		      if (editButton!=null)
+		        editButton.setEnabled(false);
+			}
+      });
 
       for(int i=0;i<genericButtons.size();i++) {
         ((GenericButton)genericButtons.get(i)).setEnabled(false);
@@ -907,10 +970,14 @@ public class Form extends JPanel implements DataController,ValueChangeListener,G
       for(int i=0;i<linkButtons.size();i++)
         ((LinkButton)linkButtons.get(i)).setEnabled(false);
 
-      if (reloadButton!=null)
-        reloadButton.setEnabled(true);
-      if (saveButton!=null)
-        saveButton.setEnabled(true);
+      SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+		      if (reloadButton!=null)
+		        reloadButton.setEnabled(true);
+		      if (saveButton!=null)
+		        saveButton.setEnabled(true);
+			}
+      });
 
       resetButtonsState();
     } else if (mode==Consts.READONLY) {
@@ -923,15 +990,19 @@ public class Form extends JPanel implements DataController,ValueChangeListener,G
         container = (Container)linkedPanels.get(i);
         setEnabled(container.getComponents(),false);
       }
-
-      if (insertButton!=null)
-        insertButton.setEnabled(true);
-      if (copyButton!=null)
-        copyButton.setEnabled(true);
-      if (deleteButton!=null)
-        deleteButton.setEnabled(true);
-      if (editButton!=null)
-        editButton.setEnabled(true);
+      
+      SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+		      if (insertButton!=null)
+		        insertButton.setEnabled(true);
+		      if (copyButton!=null)
+		        copyButton.setEnabled(true);
+		      if (deleteButton!=null)
+		        deleteButton.setEnabled(true);
+		      if (editButton!=null)
+		        editButton.setEnabled(true);
+			}
+      });
 
       for(int i=0;i<genericButtons.size();i++)
         ((GenericButton)genericButtons.get(i)).setEnabled(true);
@@ -940,10 +1011,14 @@ public class Form extends JPanel implements DataController,ValueChangeListener,G
       for(int i=0;i<linkButtons.size();i++)
         ((LinkButton)linkButtons.get(i)).setEnabled(((LinkButton)linkButtons.get(i)).getOldValue());
 
-      if (reloadButton!=null)
-        reloadButton.setEnabled(true);
-      if (saveButton!=null)
-        saveButton.setEnabled(false);
+      SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+		      if (reloadButton!=null)
+		        reloadButton.setEnabled(true);
+		      if (saveButton!=null)
+		        saveButton.setEnabled(false);
+			}
+	  });
 
       resetButtonsState();
     } else if (mode==Consts.EDIT) {
@@ -974,14 +1049,18 @@ public class Form extends JPanel implements DataController,ValueChangeListener,G
 
       this.formController.afterEditData(this);
 
-      if (insertButton!=null)
-        insertButton.setEnabled(false);
-      if (copyButton!=null)
-        copyButton.setEnabled(false);
-      if (deleteButton!=null)
-        deleteButton.setEnabled(false);
-      if (editButton!=null)
-        editButton.setEnabled(false);
+      SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+		      if (insertButton!=null)
+		        insertButton.setEnabled(false);
+		      if (copyButton!=null)
+		        copyButton.setEnabled(false);
+		      if (deleteButton!=null)
+		        deleteButton.setEnabled(false);
+		      if (editButton!=null)
+		        editButton.setEnabled(false);
+			}
+	  });
 
       for(i=0;i<genericButtons.size();i++)
         ((GenericButton)genericButtons.get(i)).setEnabled(false);
@@ -989,10 +1068,14 @@ public class Form extends JPanel implements DataController,ValueChangeListener,G
       for(i=0;i<linkButtons.size();i++)
         ((LinkButton)linkButtons.get(i)).setEnabled(false);
 
-      if (reloadButton!=null)
-        reloadButton.setEnabled(true);
-      if (saveButton!=null)
-        saveButton.setEnabled(true);
+      SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+		      if (reloadButton!=null)
+		        reloadButton.setEnabled(true);
+		      if (saveButton!=null)
+		        saveButton.setEnabled(true);
+			}
+      });
 
       resetButtonsState();
 
@@ -1849,6 +1932,7 @@ public class Form extends JPanel implements DataController,ValueChangeListener,G
           }
           return true;
         } else {
+        	/*
           OptionPane.showMessageDialog(
               this,
               ClientSettings.getInstance().getResources().getResource("Error while saving: incorrect data.")+"\n"+
@@ -1856,6 +1940,15 @@ public class Form extends JPanel implements DataController,ValueChangeListener,G
               ClientSettings.getInstance().getResources().getResource("Saving Error"),
               JOptionPane.WARNING_MESSAGE
           );
+          */
+        	ErrorInfo info = new ErrorInfo(ClientSettings.getInstance().getResources().getResource("Saving Error")
+        			                      ,ClientSettings.getInstance().getResources().getResource("Error while saving: incorrect data.")
+        			                      ,ClientSettings.getInstance().getResources().getResource(response.getErrorMessage())
+        			                      ,null
+        			                      ,null
+        			                      ,ErrorLevel.WARNING
+        			                      ,null);
+        	JXErrorPane.showDialog(null,info);
           return false;
         }
       }
