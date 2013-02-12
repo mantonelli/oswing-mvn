@@ -8,9 +8,7 @@
 		<artifactId>oswing</artifactId>
 		<version>2.4.5</version>
 	</parent>
-	<groupId>oswing</groupId>
 	<artifactId>oswing-clientos</artifactId>
-	<version>2.4.5</version>
 	<name>oswing-clientos</name>
 	<url>http://maven.apache.org</url>
 	<properties>
@@ -46,5 +44,10 @@
 			<version>1.5.0</version>
 			<type>jar</type>
 		</dependency>
-  </dependencies>
+		<dependency>
+			<groupId>org.swinglabs</groupId>
+			<artifactId>swingx</artifactId>
+			<version>1.6.1</version>
+		</dependency>
+	</dependencies>
 </project>
