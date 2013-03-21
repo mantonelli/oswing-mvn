@@ -35,9 +35,15 @@ public class ErrorResponse extends Response {
 
   /** error message */
   private String errorMessage = null;
+  private Throwable throwable = null;
 
   public ErrorResponse(String errorMessage) {
     this.errorMessage = errorMessage;
+  }
+  
+  public ErrorResponse(String errorMessage, Throwable throwable) {
+	  this.errorMessage = errorMessage;
+	  this.throwable    = throwable;
   }
 
 
