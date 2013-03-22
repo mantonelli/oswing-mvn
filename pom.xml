@@ -31,6 +31,14 @@
     </dependency>
   </dependencies>
   
+  <distributionManagement>
+    <repository>
+      <id>antech-ftp</id>
+      <name>Repositório interno</name>
+      <url>ftp://ftp.antech-inf.com.br/public_html/maven2</url>
+    </repository>
+  </distributionManagement>
+ 
   <modules>
   	<module>oswing-commonos</module>
   	<module>oswing-clientos</module>
