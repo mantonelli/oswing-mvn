@@ -3,6 +3,7 @@ package org.openswing.swing.message.receive.java;
 
 
 
+
 /**
  * <p>Title: OpenSwing Framework</p>
  * <p>Description: Message returned by the server side: it represents an error.</p>
@@ -36,12 +37,20 @@ public class ErrorResponse extends Response {
   /** error message */
   private String errorMessage = null;
 
+  private Throwable throwable = null;
+  
   public ErrorResponse(String errorMessage) {
     this.errorMessage = errorMessage;
   }
 
 
-  /**
+  public ErrorResponse(String message, Throwable e) {
+	 this.errorMessage = message;
+	 this.throwable    = throwable;
+  }
+
+
+/**
    * @return <code>true</code>: an error occours
    */
   public final boolean isError() {
