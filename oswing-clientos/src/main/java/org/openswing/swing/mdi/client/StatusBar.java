@@ -6,6 +6,10 @@ import javax.swing.*;
 import org.openswing.swing.util.client.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.EtchedBorder;
 
 /**
  * <p>Title: OpenSwing Framework</p>
@@ -132,7 +136,7 @@ public class StatusBar extends JPanel {
     statusText.setEditable(false);
     statusText.setText(" ");
     this.setLayout(gridBagLayout1);
-    this.setBorder(BorderFactory.createLoweredBevelBorder());
+    this.setBorder(new CompoundBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), new EmptyBorder(2, 2, 2, 1)));
     progressBar.setMinimumSize(new Dimension(175, (int)statusText.getPreferredSize().getHeight()));
     progressBar.setPreferredSize(new Dimension(175, (int)statusText.getPreferredSize().getHeight()));
     this.add(progressBar,       new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0
