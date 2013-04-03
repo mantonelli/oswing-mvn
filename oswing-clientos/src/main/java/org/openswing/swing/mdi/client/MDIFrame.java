@@ -82,7 +82,7 @@ public class MDIFrame extends JFrame implements BusyListener {
   private JMenu menuHelp = new JMenu();
   private JMenuItem menuHelpAbout = new JMenuItem();
   private static StatusBar statusBar = new StatusBar();
-  private BorderLayout borderLayout1 = new BorderLayout(0,3);
+  private BorderLayout borderLayout1 = new BorderLayout(0,2);
   private static DesktopPane desktopPane = new DesktopPane();
   private JScrollPane scrollPane = new JScrollPane(desktopPane);
   private static TreeMenu treeMenu = null;
@@ -386,7 +386,7 @@ public class MDIFrame extends JFrame implements BusyListener {
        * @author Matheus Antonelli
        * Aesthetics change. Remove border to look better.
        */
-      treeMenu.setBorder(null);
+      //treeMenu.setBorder(null);
       
       lastTreeMenuWidth = treeMenu.getWidth();
       splitPane.setLeftComponent(treeMenu);
@@ -405,7 +405,7 @@ public class MDIFrame extends JFrame implements BusyListener {
           )
         );
         splitPane.setRightComponent(scrollPane);
-        scrollPane.getViewport().add(desktopPane);
+        scrollPane.setViewportView(desktopPane);
       }
       else
         splitPane.setRightComponent(desktopPane);
@@ -458,7 +458,7 @@ public class MDIFrame extends JFrame implements BusyListener {
             this.getHeight()-menuBar.getHeight()-statusBar.getHeight()-103-scrollPane.getHorizontalScrollBar().getPreferredSize().height-20
           )
         );
-        scrollPane.getViewport().add(desktopPane);
+        scrollPane.setViewportView(desktopPane);
         contentPane.add(scrollPane, BorderLayout.CENTER);
       }
       else
@@ -718,7 +718,7 @@ public class MDIFrame extends JFrame implements BusyListener {
    * @param frame internal frame
    */
   public static final void add(InternalFrame frame) {
-    add(frame,false);
+    getContentPane().add(frame,false);
   }
 
 
