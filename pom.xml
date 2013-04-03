@@ -13,6 +13,21 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
+  
+  <repositories>
+    <repository>
+      <id>antech-ftp</id>
+      <name>Personal Repo</name>
+      <url>ftp://ftp.antech-inf.com.br/public_html/maven2</url>
+    </repository>
+  </repositories>
+  
+  <distributionManagement>
+    <repository>
+      <id>antech-ftp</id>
+      <url>ftp://ftp.antech-inf.com.br/public_html/maven2</url>
+    </repository>
+  </distributionManagement>
 
   <dependencies>
     <dependency>
@@ -22,6 +37,16 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+  
+  <build>
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.wagon</groupId>
+        <artifactId>wagon-ftp</artifactId>
+        <version>1.0-alpha-6</version>
+      </extension>
+    </extensions>
+  </build>
   
   <modules>
   	<module>oswing-commonos</module>
