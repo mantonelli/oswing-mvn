@@ -70,7 +70,7 @@ public class TreeMenu extends JPanel {
    */
   public TreeMenu(DefaultTreeModel functions) {
     createTree(functions);
-    setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+    setBorder(new CompoundBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), new EmptyBorder(1, 1, 1, 1)));
     try {
       jbInit();
 
