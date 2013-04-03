@@ -82,6 +82,16 @@ public class FormController {
 
 
   /**
+   * @author Matheus Antonelli &lt;matheus.antonelli@gmail.com&gt;
+   * 
+   * Callback method called when user has presses on reload button.
+   * 
+   */
+  public boolean beforeReloadData() {
+	  return true;
+  }
+  
+  /**
    * Callback method called when user has pressed on reload button.
    */
   public void afterReloadData() {

@@ -690,6 +690,11 @@ public class Form extends JPanel implements DataController,ValueChangeListener,G
   private void reloadData() {
     SwingUtilities.invokeLater(new Runnable() {
       public void run() {
+    	 
+    	 // If false, aborts data reload and returns...
+    	 if(!formController.beforeReloadData())
+    		 return;
+    	  
         boolean errorOnLoad = true;
         // it will be used another thread to do not block the rest of the application (the main graphical thread)...
         if (reloadButton!=null)
