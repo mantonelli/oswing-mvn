@@ -1206,6 +1206,10 @@ public class MDIFrame extends JFrame implements BusyListener {
   public final boolean isUniqueInstanceAlreadyOpened(InternalFrame frame) {
     return uniqueInstances.contains(frame.getClass());
   }
+  
+  public void addMenu(JMenu menu) {
+	  menuBar.add(menu, menuBar.getComponentCount() - 2);
+  }
 
 
 }
