@@ -38,8 +38,6 @@ public class ErrorResponse extends Response {
   private String errorMessage = null;
   private Throwable throwable = null;
 
-  private Throwable throwable = null;
-  
   public ErrorResponse(String errorMessage) {
     this.errorMessage = errorMessage;
   }
@@ -48,13 +46,6 @@ public class ErrorResponse extends Response {
 	  this.errorMessage = errorMessage;
 	  this.throwable    = throwable;
   }
-
-
-  public ErrorResponse(String message, Throwable e) {
-	 this.errorMessage = message;
-	 this.throwable    = throwable;
-  }
-
 
 /**
    * @return <code>true</code>: an error occours
