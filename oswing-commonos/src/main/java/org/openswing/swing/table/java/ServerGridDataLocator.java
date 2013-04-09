@@ -75,7 +75,7 @@ public class ServerGridDataLocator implements GridDataLocator {
       return (Response)m.invoke(null,new Object[]{serverMethodName,pars});
     }
     catch (Throwable ex) {
-      return new ErrorResponse("Error while loading data:\n"+ex.toString());
+      return new ErrorResponse("Error while loading data.", ex);
     }
   }
 
