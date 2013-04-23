@@ -15,7 +15,6 @@
   </properties>
   
   <repositories>
-<<<<<<< HEAD
     <repository>
       <id>antech-ftp</id>
       <name>Personal Repo</name>
@@ -29,14 +28,6 @@
       <url>ftp://ftp.antech-inf.com.br/public_html/maven2</url>
     </repository>
   </distributionManagement>
-=======
-		<repository>
-			<id>antech-ftp</id>
-			<name>Personal Repo</name>
-			<url>ftp://ftp.antech-inf.com.br/public_html/maven2</url>
-		</repository>
-	</repositories>
->>>>>>> 86c5cf08dc71fce444a1a0135b38985487693c23
 
   <dependencies>
     <dependency>
@@ -46,8 +37,7 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-  
-<<<<<<< HEAD
+
   <build>
     <extensions>
       <extension>
@@ -57,17 +47,7 @@
       </extension>
     </extensions>
   </build>
-  
-=======
-  <distributionManagement>
-    <repository>
-      <id>antech-ftp</id>
-      <name>Repositório interno</name>
-      <url>ftp://ftp.antech-inf.com.br/public_html/maven2</url>
-    </repository>
-  </distributionManagement>
- 
->>>>>>> 86c5cf08dc71fce444a1a0135b38985487693c23
+
   <modules>
   	<module>oswing-commonos</module>
   	<module>oswing-clientos</module>
