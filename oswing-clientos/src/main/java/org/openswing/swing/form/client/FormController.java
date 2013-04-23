@@ -203,6 +203,10 @@ public class FormController {
     return true;
   }
 
+  /**
+   * Callback method invoked on pressing SAVE button, after invoking insertRecord or updateRecord methods.
+   */
+  public void afterSaveData(Form form) {}
 
   /**
    * Callback method invoked on pressing EDIT button to check if edit mode is allowed.

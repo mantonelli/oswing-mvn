@@ -1882,6 +1882,9 @@ public class Form extends JPanel implements DataController,ValueChangeListener,G
 
           // reset input controls value according to value object content (which could be filled on the server side)
           pull();
+          
+          // By Matheus Antonelli 
+          formController.afterSaveData(this);
 
           setMode(Consts.READONLY);
           if (saveButton!=null)
