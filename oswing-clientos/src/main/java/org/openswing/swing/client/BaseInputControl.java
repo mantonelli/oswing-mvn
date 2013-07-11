@@ -11,6 +11,8 @@ import org.openswing.swing.form.model.client.*;
 import org.openswing.swing.logger.client.*;
 import org.openswing.swing.util.client.*;
 import com.toedter.calendar.*;
+
+import javax.swing.border.LineBorder;
 import javax.swing.text.JTextComponent;
 
 
@@ -302,7 +304,8 @@ public class BaseInputControl extends JPanel implements InputControl {
    * @param require mandatory property of the input control
    */
   public final void setRequired(boolean required) {
-    if (!this.required && required && ClientSettings.VIEW_MANDATORY_SYMBOL) {
+	  if(ClientSettings.VIEW_MANDATORY_SYMBOL) {
+    if (!this.required && required) {
       if (this.getLayout() instanceof FlowLayout)
         this.add(requiredIcon);
       else if (this.getLayout() instanceof BorderLayout)
@@ -312,9 +315,18 @@ public class BaseInputControl extends JPanel implements InputControl {
 
       this.revalidate();
       this.repaint();
-    } else if (this.required && !required && ClientSettings.VIEW_MANDATORY_SYMBOL) {
+    } else if (this.required && !required) {
       this.remove(requiredIcon);
     }
+	  }
+	  else if(ClientSettings.PAINT_BORDER_MANDATORY_FIELD) {
+		  if (!this.required && required) {
+			  this.setBorder(new LineBorder(ClientSettings.REQUIRED_FIELD_BORDER_COLOR));
+		  }
+		  else if (this.required && !required) {
+			  this.setBorder(null);
+		  }
+	  }
     this.required = required;
   }
 

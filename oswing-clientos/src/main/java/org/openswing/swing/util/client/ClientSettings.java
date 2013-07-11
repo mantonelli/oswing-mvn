@@ -262,6 +262,10 @@ public class ClientSettings {
 
   /** define if must be show the mandatory symbol "*" in mandatory input controls */
   public static boolean VIEW_MANDATORY_SYMBOL = false;
+  
+  public static boolean PAINT_BORDER_MANDATORY_FIELD = true;
+  
+  public static Color REQUIRED_FIELD_BORDER_COLOR = new Color(255,0,0); 
 
   /** define if must be set a background color on focusing an input control */
   public static boolean VIEW_BACKGROUND_SEL_COLOR = false;
