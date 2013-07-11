@@ -62,5 +62,8 @@ public class ErrorResponse extends Response {
     return errorMessage;
   }
 
+  public final Throwable getException() {
+	  return throwable;
+  }
 
 }
