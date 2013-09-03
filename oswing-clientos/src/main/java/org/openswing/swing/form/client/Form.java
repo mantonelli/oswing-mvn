@@ -1950,8 +1950,8 @@ public class Form extends JPanel implements DataController,ValueChangeListener,G
           );
           */
         	ErrorInfo info = new ErrorInfo(ClientSettings.getInstance().getResources().getResource("Saving Error")
-        			                      ,ClientSettings.getInstance().getResources().getResource("Error while saving: incorrect data.")
         			                      ,ClientSettings.getInstance().getResources().getResource(response.getErrorMessage())
+        			                      ,ClientSettings.getInstance().getResources().getResource("Error while saving: incorrect data.")
         			                      ,null
         			                      ,null
         			                      ,ErrorLevel.WARNING
