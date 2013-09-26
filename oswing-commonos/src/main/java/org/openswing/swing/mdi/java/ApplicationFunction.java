@@ -1,6 +1,7 @@
 package org.openswing.swing.mdi.java;
 
 import javax.swing.tree.*;
+import javax.swing.ImageIcon;
 import javax.swing.KeyStroke;
 
 
@@ -37,6 +38,11 @@ import javax.swing.KeyStroke;
  */
 public class ApplicationFunction extends DefaultMutableTreeNode {
 
+	private static final long serialVersionUID = -6918074975777243063L;
+	
+	private Object obj;
+	private ImageIcon icon;
+	
   /** function identifier */
   private String functionId;
 
@@ -138,9 +144,25 @@ public class ApplicationFunction extends DefaultMutableTreeNode {
     this(nodeName,functionId,iconName,methodName);
     this.tooltipText = tooltipText;
   }
+  
+  
+  public ApplicationFunction(String nodeName,Object obj,ImageIcon icon,String methodName,String tooltipText) {
+	    this(nodeName,obj,icon,methodName);
+	    this.tooltipText = tooltipText;
+  }
+
+  public ApplicationFunction(String nodeName, Object obj, ImageIcon icon,
+		String methodName) {
+	  this.description = nodeName;
+	    this.obj = obj;
+	    this.icon = icon;
+	    this.methodName = methodName;
+	    this.tooltipText = nodeName;
+	    isFolder = false;
+}
 
 
-  /**
+/**
    * @return function identifier
    */
   public final String getFunctionId() {
