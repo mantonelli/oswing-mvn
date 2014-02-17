@@ -327,7 +327,7 @@ public class ClientUtils extends JApplet {
 //          ClientSettings.getInstance().getResources().getResource("Server Comunication Error"),
 //          JOptionPane.ERROR_MESSAGE
 //      );
-      return new ErrorResponse(ex.getMessage());
+      return new ErrorResponse(ex.getMessage(),ex);
     }
   }
 
