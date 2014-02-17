@@ -55,5 +55,6 @@
     <module>utils-mybatis</module>
     <module>oswing-clientos15</module>
     <module>oswing-clientos14</module>
+    <module>oswing-jpautil</module>
   </modules>
 </project>
