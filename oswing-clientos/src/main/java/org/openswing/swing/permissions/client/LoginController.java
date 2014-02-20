@@ -54,7 +54,7 @@ public interface LoginController {
    * than Map argument contains an entry named "password" with associated value tpye byte[] (encrypted password)
    * otherwise Map argument contains an entry named "password" with associated value type String (clear password)
    */
-  public boolean authenticateUser(Map loginInfo) throws Exception;
+  public boolean authenticateUser(Map loginInfo) throws LoginException;
 
 
   /**
