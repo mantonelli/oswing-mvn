@@ -76,7 +76,34 @@ public class ClientSettings {
 
   /** image name for insert button */
   public static String BUTTON_DELETE_IMAGE_NAME = "del.gif";
+  
+  public static String BUTTON_FIND_IMAGE_NAME = "find.gif";
 
+  /** By Matheus Antonelli at 23.02.2014
+   * Images for NavigatorBar
+   */
+  public static String  NAVBAR_FIRST_RECORD = "first.gif";
+
+  /** select the previous row in the grid */
+  public static String  NAVBAR_PREVIOUS_RECORD = "prev.gif";
+
+  /** select the next row in the grid */
+  public static String  NAVBAR_NEXT_RECORD = "next.gif";
+
+  /** load the last block of records into the grid */
+  public static String  NAVBAR_LAST_RECORD = "last.gif";
+
+  /** load the next block of records from the grid */
+  public static String  NAVBAR_NEXT_PAGE = "nextpg.gif";
+
+  /** load the previous block of records from the grid */
+  public static String  NAVBAR_PREVIOUS_PAGE = "prevpg.gif";
+  
+  public static String  QUICKFILTER_RANGE_BUTTON_ENABLED = "chiuso.gif";
+  public static String  QUICKFILTER_RANGE_BUTTON_DISABLED = "aperto.gif";
+  public static String  QUICKFILTER_FILTER_BUTTON = "filter.gif";
+  
+  
   /** image name for the MDI Frame */
   public static String ICON_FILENAME = "appicon.gif";
 
