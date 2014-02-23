@@ -209,7 +209,7 @@ public class GridController {
    * Callback method invoked when the user has selected another row.
    * @param rowNumber selected row index
    */
-  public void rowChanged(int rowNumber) {
+  public void rowChanged(GridControl grid, int rowNumber) {
   }
 
 

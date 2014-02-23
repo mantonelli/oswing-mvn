@@ -2119,7 +2119,7 @@ public class Grid extends JTable
 
     // fire row selected event...
     if (gridController!=null && this.getSelectedRow()!=-1)
-      gridController.rowChanged(this.getSelectedRow());
+      gridController.rowChanged(grids.getGridControl(), this.getSelectedRow());
 
   }
 
