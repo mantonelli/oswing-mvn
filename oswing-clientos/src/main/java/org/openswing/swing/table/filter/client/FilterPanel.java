@@ -62,7 +62,7 @@ public class FilterPanel extends JPanel {
   private JPanel fPanel = new JPanel();
   private GridBagLayout gridBagLayout1 = new GridBagLayout();
   private GridBagLayout gridBagLayout2 = new GridBagLayout();
-  private GenericButton filterButton = new GenericButton(new ImageIcon(ClientUtils.getImage("filter.gif")));
+  private GenericButton filterButton = new GenericButton(new ImageIcon(ClientUtils.getImage(ClientSettings.BUTTON_FIND_IMAGE_NAME)));
   private FlowLayout flowLayout1 = new FlowLayout();
   private JPanel topPanel = new JPanel();
   private GridBagLayout gridBagLayout4 = new GridBagLayout();

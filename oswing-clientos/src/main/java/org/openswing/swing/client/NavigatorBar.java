@@ -38,25 +38,25 @@ import org.openswing.swing.util.client.*;
  * @author Mauro Carniel
  * @version 1.0
  */
-public class NavigatorBar extends JPanel {
+public class NavigatorBar extends JToolBar {
 
   /** load the first block of records into the grid */
-  private JButton firstButton = new GenericButton(new ImageIcon(ClientUtils.getImage("first.gif")));
+  private JButton firstButton = new GenericButton(new ImageIcon(ClientUtils.getImage(ClientSettings.NAVBAR_FIRST_RECORD)));
 
   /** select the previous row in the grid */
-  private JButton prevButton = new GenericButton(new ImageIcon(ClientUtils.getImage("prev.gif")));
+  private JButton prevButton = new GenericButton(new ImageIcon(ClientUtils.getImage(ClientSettings.NAVBAR_PREVIOUS_RECORD)));
 
   /** select the next row in the grid */
-  private JButton nextButton = new GenericButton(new ImageIcon(ClientUtils.getImage("next.gif")));
+  private JButton nextButton = new GenericButton(new ImageIcon(ClientUtils.getImage(ClientSettings.NAVBAR_NEXT_RECORD)));
 
   /** load the last block of records into the grid */
-  private JButton lastButton = new GenericButton(new ImageIcon(ClientUtils.getImage("last.gif")));
+  private JButton lastButton = new GenericButton(new ImageIcon(ClientUtils.getImage(ClientSettings.NAVBAR_LAST_RECORD)));
 
   /** load the next block of records from the grid */
-  private JButton nextPgButton = new GenericButton(new ImageIcon(ClientUtils.getImage("nextpg.gif")));
+  private JButton nextPgButton = new GenericButton(new ImageIcon(ClientUtils.getImage(ClientSettings.NAVBAR_NEXT_PAGE)));
 
   /** load the previous block of records from the grid */
-  private JButton prevPgButton = new GenericButton(new ImageIcon(ClientUtils.getImage("prevpg.gif")));
+  private JButton prevPgButton = new GenericButton(new ImageIcon(ClientUtils.getImage(ClientSettings.NAVBAR_PREVIOUS_PAGE)));
 
   /** grid control */
   private NavigatorBarController resultSetController = null;
@@ -94,6 +94,8 @@ public class NavigatorBar extends JPanel {
 
 
   public NavigatorBar() {
+  	setRollover(true);
+  	setFloatable(false);
     try {
       jbInit();
       controlPageNr.setColumns(3);

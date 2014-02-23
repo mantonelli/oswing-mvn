@@ -202,8 +202,8 @@ public class QuickFilterPanel extends JPanel implements MenuElement, MenuContain
 
       ApplicationEventQueue.getInstance().addKeyListener(this);
 
-      filterIcon = new ImageIcon(ClientUtils.getImage("filter.gif"));
-      rangeButton= new JToggleButton(new ImageIcon(ClientUtils.getImage("chiuso.gif")),false) {
+      filterIcon = new ImageIcon(ClientUtils.getImage(ClientSettings.QUICKFILTER_FILTER_BUTTON));
+      rangeButton= new JToggleButton(new ImageIcon(ClientUtils.getImage(ClientSettings.QUICKFILTER_RANGE_BUTTON_ENABLED)),false) {
 
         /**
          * Method available in java 1.5
@@ -212,10 +212,10 @@ public class QuickFilterPanel extends JPanel implements MenuElement, MenuContain
           if (e.getID()==e.MOUSE_CLICKED) {
             if (QuickFilterPanel.this.filterType==FILTER_TYPE_VALUE) {
               QuickFilterPanel.this.filterType=FILTER_TYPE_RANGE;
-              rangeButton.setIcon(new ImageIcon(ClientUtils.getImage("aperto.gif")));
+              rangeButton.setIcon(new ImageIcon(ClientUtils.getImage(ClientSettings.QUICKFILTER_RANGE_BUTTON_DISABLED)));
             } else {
               QuickFilterPanel.this.filterType=FILTER_TYPE_VALUE;
-              rangeButton.setIcon(new ImageIcon(ClientUtils.getImage("chiuso.gif")));
+              rangeButton.setIcon(new ImageIcon(ClientUtils.getImage(ClientSettings.QUICKFILTER_RANGE_BUTTON_ENABLED)));
             }
 
             updateComponents(); // update filter panel...
@@ -235,11 +235,11 @@ public class QuickFilterPanel extends JPanel implements MenuElement, MenuContain
         public void actionPerformed(ActionEvent e) {
           if (QuickFilterPanel.this.filterType==FILTER_TYPE_VALUE) {
             QuickFilterPanel.this.filterType=FILTER_TYPE_RANGE;
-            rangeButton.setIcon(new ImageIcon(ClientUtils.getImage("aperto.gif")));
+            rangeButton.setIcon(new ImageIcon(ClientUtils.getImage(ClientSettings.QUICKFILTER_RANGE_BUTTON_DISABLED)));
           }
           else {
             QuickFilterPanel.this.filterType=FILTER_TYPE_VALUE;
-            rangeButton.setIcon(new ImageIcon(ClientUtils.getImage("chiuso.gif")));
+            rangeButton.setIcon(new ImageIcon(ClientUtils.getImage(ClientSettings.QUICKFILTER_RANGE_BUTTON_ENABLED)));
           }
           updateComponents(); // update filter panel...
 
