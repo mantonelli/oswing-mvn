@@ -2,7 +2,6 @@ package org.openswing.swing.client;
 
 import java.math.*;
 import java.text.*;
-
 import java.awt.*;
 import java.awt.event.*;
 
@@ -482,8 +481,18 @@ public class NumericControl extends BaseInputControl implements InputControl {
   public void setEnabled(boolean enabled) {
     numBox.setEditable(enabled);
     numBox.setFocusable(enabled || ClientSettings.DISABLED_INPUT_CONTROLS_FOCUSABLE);
-    if (!enabled)
+    if (!enabled) {
       numBox.setBackground((Color)UIManager.get("TextField.inactiveBackground"));
+    } else {
+  	  if(isRequired() && ClientSettings.PAINT_BG_MANDATORY_FIELD) {
+		  numBox.setForeground(UIManager.getColor("TextField.foreground"));
+		  numBox.setBackground(ClientSettings.REQUIRED_FIELD_BG_COLOR);
+	  }
+	  else {
+		  numBox.setForeground(UIManager.getColor("TextField.foreground"));
+		  numBox.setBackground(UIManager.getColor("TextField.background"));
+	  }
+  }
   }
 
 

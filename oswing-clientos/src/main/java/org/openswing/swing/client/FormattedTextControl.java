@@ -1,12 +1,12 @@
 package org.openswing.swing.client;
 
 import java.text.*;
-
 import java.awt.*;
 import java.awt.event.*;
 
 import javax.swing.*;
 import javax.swing.text.*;
+
 import org.openswing.swing.util.client.ClientSettings;
 import org.openswing.swing.logger.client.Logger;
 
@@ -143,8 +143,18 @@ public class FormattedTextControl extends BaseInputControl implements InputContr
     if (textBox!=null) {
       textBox.setEditable(enabled);
       textBox.setFocusable(enabled || ClientSettings.DISABLED_INPUT_CONTROLS_FOCUSABLE);
-      if (!enabled)
+      if (!enabled) {
         getBindingComponent().setBackground((Color)UIManager.get("TextField.inactiveBackground"));
+      } else {
+    	  if(isRequired() && ClientSettings.PAINT_BG_MANDATORY_FIELD) {
+    		  textBox.setForeground(UIManager.getColor("TextField.foreground"));
+    		  textBox.setBackground(ClientSettings.REQUIRED_FIELD_BG_COLOR);
+    	  }
+    	  else {
+    		  textBox.setForeground(UIManager.getColor("TextField.foreground"));
+    		  textBox.setBackground(UIManager.getColor("TextField.background"));
+    	  }
+      }
     }
   }
 

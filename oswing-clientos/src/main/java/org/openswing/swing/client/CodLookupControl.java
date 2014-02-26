@@ -1,18 +1,37 @@
 package org.openswing.swing.client;
 
-import java.beans.*;
-import java.util.*;
+import java.awt.Component;
+import java.awt.ComponentOrientation;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.beans.Beans;
+import java.util.Collection;
+import java.util.Iterator;
 
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.UIManager;
 
-import org.openswing.swing.form.client.*;
-import org.openswing.swing.form.model.client.*;
-import org.openswing.swing.lookup.client.*;
-import org.openswing.swing.mdi.client.*;
-import org.openswing.swing.message.receive.java.*;
-import org.openswing.swing.util.client.*;
+import org.openswing.swing.form.client.Form;
+import org.openswing.swing.form.model.client.ValueChangeEvent;
+import org.openswing.swing.form.model.client.ValueChangeListener;
+import org.openswing.swing.lookup.client.LookupAutoCompletitionDataLocator;
+import org.openswing.swing.lookup.client.LookupController;
+import org.openswing.swing.lookup.client.LookupListener;
+import org.openswing.swing.lookup.client.LookupParent;
+import org.openswing.swing.lookup.client.RestoreFocusOnInvalidCodeException;
+import org.openswing.swing.mdi.client.MDIFrame;
+import org.openswing.swing.message.receive.java.ValueObject;
+import org.openswing.swing.util.client.ClientSettings;
+import org.openswing.swing.util.client.ClientUtils;
 
 /**
  * <p>
@@ -57,7 +76,7 @@ import org.openswing.swing.util.client.*;
 public class CodLookupControl extends BaseInputControl implements
 		CodBoxContainer, InputControl, LookupParent,
 		AutoCompletitionInputControl {
-
+	
 	/** separator between code input field and lookup button */
 	private Component buttonSeparator = javax.swing.Box
 			.createHorizontalStrut(5);
@@ -209,6 +228,8 @@ public class CodLookupControl extends BaseInputControl implements
 			setComponentOrientation(ClientSettings.TEXT_ORIENTATION);
 
 		initListeners();
+		
+		addPropertyChangeListener(codBox);
 	}
 
 	/**

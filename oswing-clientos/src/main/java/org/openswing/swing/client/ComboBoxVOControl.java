@@ -5,9 +5,9 @@ import java.math.*;
 import java.sql.*;
 import java.util.*;
 import java.util.Date;
-
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
 
 import org.openswing.swing.form.client.*;
@@ -17,6 +17,7 @@ import org.openswing.swing.message.receive.java.*;
 import org.openswing.swing.table.columns.client.*;
 import org.openswing.swing.util.client.*;
 import org.openswing.swing.util.java.*;
+
 import java.text.SimpleDateFormat;
 
 
@@ -614,8 +615,19 @@ public class ComboBoxVOControl extends BaseInputControl implements InputControl,
   public void setEnabled(boolean enabled) {
     combo.setEnabled(enabled);
     combo.setFocusable(enabled || ClientSettings.DISABLED_INPUT_CONTROLS_FOCUSABLE);
-    if (!enabled)
+    if (!enabled) {
       combo.setBackground((Color)UIManager.get("TextField.inactiveBackground"));
+    } else {
+    	if(isRequired() && ClientSettings.PAINT_BG_MANDATORY_FIELD) {
+    		  combo.setForeground(UIManager.getColor("TextField.foreground"));
+    		  combo.setBackground(ClientSettings.REQUIRED_FIELD_BG_COLOR);
+    	  }
+    	  else {
+    		//combo.setBackground(enabledBackColor);
+    		combo.setForeground(UIManager.getColor("TextField.foreground"));
+    		combo.setBackground(UIManager.getColor("TextField.background"));
+      }
+    }
   }
 
 

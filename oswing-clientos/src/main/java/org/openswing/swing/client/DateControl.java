@@ -3,15 +3,17 @@ package org.openswing.swing.client;
 import java.beans.*;
 import java.text.*;
 import java.util.*;
-
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
 
 import org.openswing.swing.internationalization.java.*;
 import org.openswing.swing.util.client.*;
 import org.openswing.swing.util.java.*;
+
 import com.toedter.calendar.*;
+
 import javax.swing.event.AncestorListener;
 import javax.swing.event.AncestorEvent;
 
@@ -489,8 +491,18 @@ public class DateControl extends BaseInputControl implements KeyListener,FocusLi
     calendar.setEnabled(enabled);
     date.setFocusable(enabled || ClientSettings.DISABLED_INPUT_CONTROLS_FOCUSABLE);
     calendar.setFocusable(enabled);
-    if (!enabled)
+    if (!enabled) {
       getBindingComponent().setBackground((Color)UIManager.get("TextField.inactiveBackground"));
+    } else {
+  	  if(isRequired() && ClientSettings.PAINT_BG_MANDATORY_FIELD) {
+		  date.setForeground(UIManager.getColor("TextField.foreground"));
+		  date.setBackground(ClientSettings.REQUIRED_FIELD_BG_COLOR);
+	  }
+	  else {
+		  date.setForeground(UIManager.getColor("TextField.foreground"));
+		  date.setBackground(UIManager.getColor("TextField.background"));
+	  }
+  }
   }
 
 

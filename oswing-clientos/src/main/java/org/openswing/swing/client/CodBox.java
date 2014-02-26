@@ -1,14 +1,22 @@
 package org.openswing.swing.client;
 
-import java.beans.*;
-import java.math.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.beans.Beans;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.math.BigDecimal;
 
-import java.awt.*;
-import java.awt.event.*;
+import javax.swing.FocusManager;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 
-import javax.swing.*;
-
-import org.openswing.swing.lookup.client.*;
+import org.openswing.swing.lookup.client.RestoreFocusOnInvalidCodeException;
 import org.openswing.swing.util.client.ClientSettings;
 
 /**
@@ -41,7 +49,7 @@ import org.openswing.swing.util.client.ClientSettings;
  * @author Mauro Carniel
  * @version 1.0
  */
-public class CodBox extends JTextField {
+public class CodBox extends JTextField implements PropertyChangeListener {
 
   /** maximum code length */
   private int maxCharacters = 1;
@@ -54,6 +62,8 @@ public class CodBox extends JTextField {
 
   /** define if the cod box allows numeric values only */
   private boolean allowOnlyNumbers = false;
+
+private boolean required;
 
 
   public CodBox() {
@@ -181,8 +191,14 @@ public class CodBox extends JTextField {
     super.setEditable(enabled);
     try {
       if (enabled) {
-        setForeground(UIManager.getColor("TextField.foreground"));
-        setBackground(UIManager.getColor("TextField.background"));
+    	  if(required && ClientSettings.PAINT_BG_MANDATORY_FIELD) {
+    		  setForeground(UIManager.getColor("TextField.foreground"));
+    		  setBackground(ClientSettings.REQUIRED_FIELD_BG_COLOR);
+    	  }
+    	  else {
+    		  setForeground(UIManager.getColor("TextField.foreground"));
+    		  setBackground(UIManager.getColor("TextField.background"));
+    	  }
       }
       else {
         setForeground(UIManager.getColor("TextField.foreground"));
@@ -298,5 +314,14 @@ public class CodBox extends JTextField {
   public final void setAllowOnlyNumbers(boolean allowOnlyNumbers) {
     this.allowOnlyNumbers = allowOnlyNumbers;
   }
+
+
+@Override
+public void propertyChange(PropertyChangeEvent arg0) {
+	if(arg0.getPropertyName().equals("required")) {
+		required = (boolean) arg0.getNewValue();
+	}
+	
+}
 
 }

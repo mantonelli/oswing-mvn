@@ -2,7 +2,9 @@ package org.openswing.swing.client;
 
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
+
 import org.openswing.swing.util.client.ClientSettings;
 
 
@@ -153,10 +155,19 @@ public class TextAreaControl extends BaseInputControl implements InputControl {
   public void setEnabled(boolean enabled) {
     textArea.setEditable(enabled);
     textArea.setFocusable(enabled || ClientSettings.DISABLED_INPUT_CONTROLS_FOCUSABLE);
-    if (enabled)
-      textArea.setBackground((Color)UIManager.get("TextField.background"));
-    else
+    if (enabled) {
+    	  if(isRequired() && ClientSettings.PAINT_BG_MANDATORY_FIELD) {
+    		  textArea.setForeground(UIManager.getColor("TextField.foreground"));
+    		  textArea.setBackground(ClientSettings.REQUIRED_FIELD_BG_COLOR);
+    	  }
+    	  else {
+    		  textArea.setForeground(UIManager.getColor("TextField.foreground"));
+    		  textArea.setBackground(UIManager.getColor("TextField.background"));
+    	  }
+    }
+    else {
       textArea.setBackground((Color)UIManager.get("TextField.inactiveBackground"));
+    }
 
   }
 

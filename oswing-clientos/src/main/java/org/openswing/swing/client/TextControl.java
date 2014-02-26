@@ -302,6 +302,15 @@ public class TextControl extends BaseInputControl implements InputControl {
       if (!enabled) {
         textBox.setForeground(UIManager.getColor("TextField.foreground"));
         textBox.setBackground(UIManager.getColor("TextField.inactiveBackground"));
+      } else {
+    	  if(isRequired() && ClientSettings.PAINT_BG_MANDATORY_FIELD) {
+    		  textBox.setForeground(UIManager.getColor("TextField.foreground"));
+    		  textBox.setBackground(ClientSettings.REQUIRED_FIELD_BG_COLOR);
+    	  }
+    	  else {
+    		  textBox.setForeground(UIManager.getColor("TextField.foreground"));
+    		  textBox.setBackground(UIManager.getColor("TextField.background"));
+    	  }
       }
     }
     catch (Exception ex) {

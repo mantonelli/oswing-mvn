@@ -2,9 +2,9 @@ package org.openswing.swing.client;
 
 import java.beans.*;
 import java.util.*;
-
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.plaf.*;
@@ -388,8 +388,15 @@ public class CheckBoxControl extends JCheckBox implements InputControl {
     super.setEnabled(enabled);
     setFocusable(enabled || ClientSettings.DISABLED_INPUT_CONTROLS_FOCUSABLE);
     try {
-      UIManager.put("CheckBox.background", (Color)UIManager.getColor("TextField.inactiveBackground"));
-      UIManager.put("CheckBoxMenuItem.selectionBackground", (Color)UIManager.getColor("TextField.inactiveBackground"));
+    	if(isRequired() && ClientSettings.PAINT_BG_MANDATORY_FIELD) {
+    		UIManager.put("CheckBox.background", ClientSettings.REQUIRED_FIELD_BG_COLOR);
+    	      UIManager.put("CheckBoxMenuItem.selectionBackground", ClientSettings.REQUIRED_FIELD_BG_COLOR);
+    	  }
+    	  else {
+    		  UIManager.put("CheckBox.background", (Color)UIManager.getColor("TextField.inactiveBackground"));
+    	      UIManager.put("CheckBoxMenuItem.selectionBackground", (Color)UIManager.getColor("TextField.inactiveBackground"));
+      }
+      
     }
     catch (Exception ex) {
     }
